@@ -42,7 +42,6 @@ The Flask server runs on `http://raspberry_pi_ip:8080/`.
 - GET `/bpm/max/`  Returns the highest recorded BPM.`curl -X GET http://localhost:8080/bpm/max/`
 - DELETE `/bpm/max/`  Resets the max BPM.`curl -X DELETE http://localhost:8080/bpm/max/`
 
+## License
 
-# License
-
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -25,27 +25,23 @@ The Flask server runs on `http://raspberry_pi_ip:8080/`.
 
 ### Get or Update BPM
 
-- GET`/bpm/` Returns the current BPM.
+- GET`/bpm/` Returns the current BPM.`curl http://localhost:8080/bpm/`
+
+  `curl -X GET http://localhost:8080/bpm/`
 - PUT `/bpm/` Updates the BPM manually.`{ "bpm": 120 }`
+
+  `curl -X PUT -H "Content-Type: application/json" -d '{"bpm": 150}' http://localhost:8080/bpm/`
 
 ### Get or Reset Minimum BPM
 
-- GET `/bpm/min/` Returns the lowest recorded BPM.
-- DELETE `/bpm/min/` Resets the min BPM.
+- GET `/bpm/min/` Returns the lowest recorded BPM.`curl -X GET http://localhost:8080/bpm/min/`
+- DELETE `/bpm/min/` Resets the min BPM.`curl -X DELETE http://localhost:8080/bpm/min/`
 
 ### Get or Reset Maximum BPM
 
-- GET `/bpm/max/`  Returns the highest recorded BPM.
-- DELETE `/bpm/max/`  Resets the max BPM.
+- GET `/bpm/max/`  Returns the highest recorded BPM.`curl -X GET http://localhost:8080/bpm/max/`
+- DELETE `/bpm/max/`  Resets the max BPM.`curl -X DELETE http://localhost:8080/bpm/max/`
 
-### Example
-
-curl http://localhost:8080/bpm/
-
-curl http://localhost:8080/bpm/min/
-
-curl -X DELETE http://localhost:8080/bpm/min/
-curl -X DELETE http://localhost:8080/bpm/max/
 
 # License
 

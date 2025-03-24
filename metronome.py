@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import json
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 
 # JSON file to store BPM data
 DATA_FILE = "bpm_data.json"
@@ -21,19 +21,27 @@ GPIO.setup(BUTTON_RED, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON_BLUE, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # Flask setup
-app = Flask(__name__)
+app = Flask(__name__, static_folder='dashboard/static')
+
+@app.route('/')
+def serve_index():
+    return send_from_directory('dashboard', 'index.html')
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('dashboard/static', filename)
 
 # State variables
 learn_mode = True  # Start in "learn mode"
 taps = []  # List to store tap timestamps
 min_taps = 4  # Minimum taps required for BPM calculation
 
-# ?? Function to save data to JSON
+# Function to save data to JSON
 def save_data():
     with open(DATA_FILE, "w") as f:
         json.dump({"bpm": bpm, "min_bpm": min_bpm, "max_bpm": max_bpm}, f)
 
-# ?? Function to load data from JSON
+# Function to load data from JSON
 def load_data():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as f:
@@ -51,7 +59,7 @@ time.sleep(1)
 GPIO.output(LED_RED, GPIO.LOW)
 GPIO.output(LED_BLUE, GPIO.LOW)
 
-# ?? Function to calculate BPM
+# Function to calculate BPM
 def calculate_bpm():
     global min_bpm, max_bpm
     if len(taps) < min_taps:

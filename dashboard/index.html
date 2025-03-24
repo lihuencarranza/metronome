@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metronome Dashboard</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Metronome Dashboard</h1>
+        <div class="bpm-display">
+            <p>Current BPM: <span id="bpm">0</span></p>
+            <p>Min BPM: <span id="minBpm">0</span></p>
+            <p>Max BPM: <span id="maxBpm">0</span></p>
+        </div>
+
+        <div class="controls">
+            <button onclick="refreshBpm()">Refresh BPM</button>
+            <input type="number" id="bpmInput" placeholder="Enter new BPM">
+            <button onclick="setBpm()">Set BPM</button>
+            <button onclick="resetMinBpm()">Reset Min BPM</button>
+            <button onclick="resetMaxBpm()">Reset Max BPM</button>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>

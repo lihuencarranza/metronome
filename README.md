@@ -2,7 +2,6 @@
 
 This project is a tap-based metronome using a Raspberry Pi with physical buttons and LEDs. It includes a Flask API to interact with the BPM data and uses a JSON file to store BPM values persistently.
 
-
 ## Installation
 
 1. Set up Raspberry Pi GPIO:
@@ -19,3 +18,35 @@ This project is a tap-based metronome using a Raspberry Pi with physical buttons
 3. Run the script:
 
 `python3 metronome.py`
+
+## API Endpoints
+
+The Flask server runs on `http://raspberry_pi_ip:8080/`.
+
+### Get or Update BPM
+
+- GET`/bpm/` Returns the current BPM.
+- PUT `/bpm/` Updates the BPM manually.`{ "bpm": 120 }`
+
+### Get or Reset Minimum BPM
+
+- GET `/bpm/min/` Returns the lowest recorded BPM.
+- DELETE `/bpm/min/` Resets the min BPM.
+
+### Get or Reset Maximum BPM
+
+- GET `/bpm/max/`  Returns the highest recorded BPM.
+- DELETE `/bpm/max/`  Resets the max BPM.
+
+### Example
+
+curl http://localhost:8080/bpm/
+
+curl http://localhost:8080/bpm/min/
+
+curl -X DELETE http://localhost:8080/bpm/min/
+curl -X DELETE http://localhost:8080/bpm/max/
+
+# License
+
+This project is licensed under the MIT License.

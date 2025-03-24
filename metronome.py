@@ -125,9 +125,9 @@ def handle_bpm():
 def handle_min_bpm():
     global min_bpm
     if request.method == 'GET':
-        return jsonify({"min_bpm": min_bpm if min_bpm is not None else "none"})
+        return jsonify({"min_bpm": min_bpm if min_bpm is not None else "0"})
     elif request.method == 'DELETE':
-        min_bpm = None
+        min_bpm = "0"
         save_data()
         return jsonify({"message": "Min BPM reset"})
 
@@ -135,9 +135,9 @@ def handle_min_bpm():
 def handle_max_bpm():
     global max_bpm
     if request.method == 'GET':
-        return jsonify({"max_bpm": max_bpm if max_bpm is not None else "none"})
+        return jsonify({"max_bpm": max_bpm if max_bpm is not None else "0"})
     elif request.method == 'DELETE':
-        max_bpm = None
+        max_bpm = "0"
         save_data()
         return jsonify({"message": "Max BPM reset"})
 
@@ -165,4 +165,6 @@ try:
         time.sleep(0.1)
 
 except KeyboardInterrupt:
+    if os.path.exists(DATA_FILE):
+        os.remove(DATA_FILE)
     GPIO.cleanup()

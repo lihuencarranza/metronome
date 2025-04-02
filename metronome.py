@@ -83,7 +83,7 @@ def calculate_bpm():
     save_data()  # Save changes
     return new_bpm
 
-# ?? Function to handle red button press (record taps)
+# Function to handle red button press (record taps)
 def button_red_pressed(channel):
     global taps
     if learn_mode:
@@ -92,7 +92,7 @@ def button_red_pressed(channel):
         time.sleep(0.1)  # Small blink effect
         GPIO.output(LED_RED, GPIO.LOW)
 
-# ?? Function to handle blue button press (toggle mode)
+# Function to handle blue button press (toggle mode)
 def button_blue_pressed(channel):
     global learn_mode, bpm, taps
     GPIO.output(LED_BLUE, GPIO.HIGH)
@@ -118,7 +118,7 @@ print("Metronome started")
 print("Learn Mode On. Press the blue button to switch to Play Mode.")
 
 # ========================
-# ?? Flask API
+# Flask API
 # ========================
 
 @app.route('/bpm/', methods=['GET', 'PUT'])
@@ -132,7 +132,6 @@ def handle_bpm():
         if "bpm" in data and isinstance(data["bpm"], int) and data["bpm"] > 0:
             bpm = data["bpm"]
 
-            # Actualizar min y max BPM
             if min_bpm is None or bpm < min_bpm:
                 min_bpm = bpm
             if max_bpm is None or bpm > max_bpm:
@@ -148,9 +147,9 @@ def handle_bpm():
 def handle_min_bpm():
     global min_bpm
     if request.method == 'GET':
-        return jsonify({"min_bpm": min_bpm if min_bpm is not None else 0})  # Cambiado "0" -> 0
+        return jsonify({"min_bpm": min_bpm if min_bpm is not None else 0}) 
     elif request.method == 'DELETE':
-        min_bpm = None  # Eliminarlo en lugar de ponerlo en 0
+        min_bpm = None  
         save_data()
         return jsonify({"message": "Min BPM reset"})
 
@@ -158,9 +157,9 @@ def handle_min_bpm():
 def handle_max_bpm():
     global max_bpm
     if request.method == 'GET':
-        return jsonify({"max_bpm": max_bpm if max_bpm is not None else 0})  # Cambiado "0" -> 0
+        return jsonify({"max_bpm": max_bpm if max_bpm is not None else 0}) 
     elif request.method == 'DELETE':
-        max_bpm = None  # Eliminarlo en lugar de ponerlo en 0
+        max_bpm = None  
         save_data()
         return jsonify({"message": "Max BPM reset"})
 

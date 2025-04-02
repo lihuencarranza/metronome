@@ -21,13 +21,13 @@ async function refreshBpm() {
 
 // Set a new BPM
 async function setBpm() {
-    const bpm = document.getElementById("bpmInput").value;
+    const bpm = parseInt(document.getElementById("bpmInput").value);
     if (bpm > 0) {
         try {
             let response = await fetch(`${API_BASE}/bpm/`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ bpm: parseInt(bpm) })
+                body: JSON.stringify({ bpm: bpm })
             });
             let data = await response.json();
             alert(data.message);

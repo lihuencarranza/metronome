@@ -21,15 +21,15 @@ GPIO.setup(BUTTON_RED, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(BUTTON_BLUE, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 # Flask setup
-app = Flask(__name__, static_folder='dashboard/static')
+app = Flask(__name__, static_folder='part2/static')
 
 @app.route('/')
 def serve_index():
-    return send_from_directory('dashboard', 'index.html')
+    return send_from_directory('part2', 'index.html')
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    return send_from_directory('dashboard/static', filename)
+    return send_from_directory('part2/static', filename)
 
 # State variables
 learn_mode = True  # Start in "learn mode"

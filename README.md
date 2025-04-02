@@ -99,6 +99,7 @@ metronome/
 
 - Enhance the UI with better styling and animations.
 - Add error messages for failed API requests.
+- Manage in learning mode bpm set from hardware or website conflict
 
 # License
 

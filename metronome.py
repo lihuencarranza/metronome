@@ -175,17 +175,24 @@ server_thread.start()
 # ========================
 #  Main Loop
 # ========================
+import time
+
 try:
+    last_pulse_time = time.perf_counter()
+
     while True:
         if not learn_mode and bpm > 0:
             interval = 60 / bpm  # Convert BPM to seconds
-            GPIO.output(LED_BLUE, GPIO.HIGH)
-            time.sleep(0.1)  # LED on for 0.1s
-            GPIO.output(LED_BLUE, GPIO.LOW)
-            time.sleep(interval - 0.1)  # Wait until next pulse
-        else:
-            GPIO.output(LED_BLUE, GPIO.LOW)  # Keep off in learn mode
-        time.sleep(0.1)
+            current_time = time.perf_counter()
+
+            if current_time - last_pulse_time >= interval:
+                GPIO.output(LED_BLUE, GPIO.HIGH)
+                time.sleep(0.05)  # Shorter LED blink
+                GPIO.output(LED_BLUE, GPIO.LOW)
+                
+                last_pulse_time = current_time  # Reset the timer
+
+        time.sleep(0.001)  # Small sleep to prevent CPU overload
 
 except KeyboardInterrupt:
     if os.path.exists(DATA_FILE):

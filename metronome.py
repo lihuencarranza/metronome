@@ -5,7 +5,7 @@ import os
 from flask import Flask, jsonify, request, send_from_directory
 
 # JSON file to store BPM data
-DATA_FILE = "bpm_data.json"
+DATA_FILE = "part2/bpm_data.json"
 
 # GPIO Pins
 LED_RED = 26      # Red LED (learn mode)

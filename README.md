@@ -2,6 +2,10 @@
 
 This project is a tap-based metronome using a Raspberry Pi with physical buttons and LEDs. It includes a Flask API to interact with the BPM data and uses a JSON file to store BPM values persistently.
 
+## Important
+
+The web site doesn't work from part1/metronome.py. Please run it from the root.
+
 ## Installation
 
 1. Set up Raspberry Pi GPIO:
@@ -84,7 +88,7 @@ metronome/
    If accessing from another device on the same network, replace `127.0.0.1` with your Raspberry Pi's IP.
 3. **Interacting with the Dashboard**
 
-   - Click **Refresh BPM** to get the latest BPM values.
+   - Click **Refresh BPM** to get the latest BPM values if it doens't update automatically.
    - Enter a new BPM value and click **Set BPM** to update it.
    - Click **Reset Min BPM** or **Reset Max BPM** to reset the respective values.
    - The BPM values update automatically every 5 seconds.
@@ -100,6 +104,7 @@ metronome/
 - Enhance the UI with better styling and animations.
 - Add error messages for failed API requests.
 - Manage in learning mode bpm set from hardware or website conflict
+- Directory from root to part1
 
 # License
 

@@ -42,7 +42,6 @@ The Flask server runs on `http://raspberry_pi_ip:8080/`.
 - GET `/bpm/max/`  Returns the highest recorded BPM.`curl -X GET http://localhost:8080/bpm/max/`
 - DELETE `/bpm/max/`  Resets the max BPM.`curl -X DELETE http://localhost:8080/bpm/max/`
 
-
 ## Part II - HTML Dashboard
 
 The dashboard allows users to communicate with the REST API provided by the metronome, making it easier to view and modify BPM values.
@@ -82,7 +81,7 @@ metronome/
    http://127.0.0.1:8080
    ```
 
-   If accessing from another device on the same network, replace `127.0.0.1` with your Raspberry Pi�s IP.
+   If accessing from another device on the same network, replace `127.0.0.1` with your Raspberry Pi's IP.
 3. **Interacting with the Dashboard**
 
    - Click **Refresh BPM** to get the latest BPM values.
@@ -100,7 +99,6 @@ metronome/
 
 - Enhance the UI with better styling and animations.
 - Add error messages for failed API requests.
-- Implement user-configurable auto-refresh intervals.
 
 # License
 
